@@ -23,16 +23,23 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="m_newButton">
           <property name="text">
            <string>New</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="m_resetButton">
           <property name="text">
            <string>Reset</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_exitButton">
+          <property name="text">
+           <string>Exit</string>
           </property>
          </widget>
         </item>
