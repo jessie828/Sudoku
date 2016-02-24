@@ -37,7 +37,7 @@ SOURCES += \
         #
 
 HEADERS += \
-        SudokuDialog.h
+        SudokuDialog.h \
         SudokuTableWidget.h \
         #
 

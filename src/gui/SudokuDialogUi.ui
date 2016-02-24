@@ -18,7 +18,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="SudokuTableWidget" name="tableWidget"/>
+       <widget class="SudokuTableWidget" name="m_table"/>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -68,7 +68,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
-  <customWidget>
+  <customwidget>
    <class>SudokuTableWidget</class>
    <extends>QTableWidget</extends>
    <header>SudokuTableWidget.h</header>
