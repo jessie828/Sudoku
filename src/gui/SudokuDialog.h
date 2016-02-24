@@ -10,7 +10,7 @@ class SudokuDialog : public QMainWindow, public Ui_SudokuDialogUi
     Q_OBJECT;
 
 public:
-    SudokuDialog();
+    SudokuDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     virtual ~SudokuDialog();
 };
 
