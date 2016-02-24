@@ -1,12 +1,14 @@
 #include "SudokuTableWidget.h"
 
 #include <QHeaderView>
+#include <QPainter>
 
 #include <stdio.h>
 
 SudokuTableWidget::SudokuTableWidget(QWidget *parent)
     : QTableWidget(parent)
 {
+    m_drawLines = false;
     for (int row = 0; row < 9; row++)
     {
         insertRow(row);
@@ -21,10 +23,8 @@ SudokuTableWidget::SudokuTableWidget(QWidget *parent)
 
     horizontalHeader()->hide();
     verticalHeader()->hide();
-
-    QMap<QPair<int, int>, int> hash;
-    hash.insert(QPair<int, int>(0,0), 4);
-    setupBoard(hash);
+    m_drawLines = true;
+    viewport()->update();
 }
 
 
@@ -45,5 +45,21 @@ void SudokuTableWidget::setupBoard(const QMap<QPair<int, int>, int> &values)
         defaultItem->setTextAlignment(Qt::AlignCenter);
         defaultItem->setFlags(Qt::ItemIsEnabled);
         setItem(loc.first, loc.second, defaultItem);
+    }
+}
+
+
+void SudokuTableWidget::paintEvent(QPaintEvent *e)
+{
+    QTableWidget::paintEvent(e);
+    if (m_drawLines)
+    {
+        printf("lines\n");
+        QPainter painter;
+        painter.begin(viewport());
+        painter.setPen(QPen(Qt::black, 3));
+        painter.drawLine(QLine(visualItemRect(item(2,0)).bottomLeft(),visualItemRect(item(2,8)).bottomRight()));
+        painter.end();
+        m_drawLines = false;
     }
 }
