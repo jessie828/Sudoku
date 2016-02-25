@@ -32,6 +32,8 @@ SudokuTableWidget::SudokuTableWidget(QWidget *parent)
         }
     }
 
+    connect(this, SIGNAL(itemChanged(QTableWidgetItem*)), SLOT(slotValidateInput(QTableWidgetItem*)));
+
     horizontalHeader()->hide();
     verticalHeader()->hide();
     viewport()->update();
@@ -56,6 +58,20 @@ void SudokuTableWidget::setupBoard(const QMap<QPair<int, int>, int> &values)
         defaultItem->setFlags(Qt::ItemIsEnabled);
         delete item(loc.first, loc.second);
         setItem(loc.first, loc.second, defaultItem);
+    }
+}
+
+
+void SudokuTableWidget::slotValidateInput(QTableWidgetItem *item)
+{
+    if (item != 0)
+    {
+        bool ok = false;
+        int value = item->text().toInt(&ok);
+        if (!ok || value > 10 || value < 0)
+        {
+            item->setText("");
+        }
     }
 }
 
