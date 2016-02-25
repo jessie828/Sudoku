@@ -8,7 +8,6 @@
 SudokuTableWidget::SudokuTableWidget(QWidget *parent)
     : QTableWidget(parent)
 {
-    m_drawLines = false;
     for (int row = 0; row < 9; row++)
     {
         insertRow(row);
@@ -21,9 +20,20 @@ SudokuTableWidget::SudokuTableWidget(QWidget *parent)
         setColumnWidth(column, 30);
     }
 
+    for (int col = 0; col < columnCount(); col++)
+    {
+        for (int row = 0; row < columnCount(); row++)
+        {
+            QTableWidgetItem *emptytItem = new QTableWidgetItem();
+            emptytItem->setTextAlignment(Qt::AlignCenter);
+            emptytItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+            emptytItem->setText("");
+            setItem(row, col, emptytItem);
+        }
+    }
+
     horizontalHeader()->hide();
     verticalHeader()->hide();
-    m_drawLines = true;
     viewport()->update();
 }
 
@@ -44,6 +54,7 @@ void SudokuTableWidget::setupBoard(const QMap<QPair<int, int>, int> &values)
         defaultItem->setFont(bold);
         defaultItem->setTextAlignment(Qt::AlignCenter);
         defaultItem->setFlags(Qt::ItemIsEnabled);
+        delete item(loc.first, loc.second);
         setItem(loc.first, loc.second, defaultItem);
     }
 }
@@ -52,14 +63,12 @@ void SudokuTableWidget::setupBoard(const QMap<QPair<int, int>, int> &values)
 void SudokuTableWidget::paintEvent(QPaintEvent *e)
 {
     QTableWidget::paintEvent(e);
-    if (m_drawLines)
-    {
-        printf("lines\n");
-        QPainter painter;
-        painter.begin(viewport());
-        painter.setPen(QPen(Qt::black, 3));
-        painter.drawLine(QLine(visualItemRect(item(2,0)).bottomLeft(),visualItemRect(item(2,8)).bottomRight()));
-        painter.end();
-        m_drawLines = false;
-    }
+    QPainter painter;
+    painter.begin(viewport());
+    painter.setPen(QPen(Qt::black, 3));
+    painter.drawLine(QLine(visualItemRect(item(2,0)).bottomLeft(),visualItemRect(item(2,8)).bottomRight()));
+    painter.drawLine(QLine(visualItemRect(item(5,0)).bottomLeft(),visualItemRect(item(5,8)).bottomRight()));
+    painter.drawLine(QLine(visualItemRect(item(0,2)).topRight(),visualItemRect(item(8,2)).bottomRight()));
+    painter.drawLine(QLine(visualItemRect(item(0,5)).topRight(),visualItemRect(item(8,5)).bottomRight()));
+    painter.end();
 }

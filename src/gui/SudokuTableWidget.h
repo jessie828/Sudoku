@@ -8,7 +8,4 @@ public:
 
 private:
     void paintEvent(QPaintEvent *e);
-
-private:
-    bool m_drawLines;
 };
