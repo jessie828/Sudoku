@@ -1,8 +1,17 @@
+#ifndef NUMBERGROUP_H_
+#define NUMBERGROUP_H_
+
+#include <QList>
+
 class NumberGroup
 {
 public:
-    NumberGroup();
+    NumberGroup(const QList<int> &defaultValues);
+    bool isValid(int newValue);
+    void addValue(int newValue);
 
 private:
-    int number;
+    QList<int> m_numbers;
 };
+
+#endif /* NUMBERGROUP_H_ */

@@ -14,8 +14,10 @@ MOC_DIR = ./moc_cpp
 
 SOURCES += \
         NumberGroup.cpp \
+        Board.cpp \
         #
 
 HEADERS += \
         NumberGroup.h \
+        Board.h \
         #

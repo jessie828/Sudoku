@@ -6,9 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>469</width>
-    <height>343</height>
+    <width>383</width>
+    <height>315</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>383</width>
+    <height>315</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>383</width>
+    <height>315</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Sudoku</string>
@@ -18,21 +36,32 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QTableWidget" name="tableWidget"/>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="SudokuTableWidget" name="m_table"/>
+        </item>
+       </layout>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="m_newButton">
           <property name="text">
            <string>New</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="m_resetButton">
           <property name="text">
            <string>Reset</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="m_exitButton">
+          <property name="text">
+           <string>Exit</string>
           </property>
          </widget>
         </item>
@@ -67,6 +96,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SudokuTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>SudokuTableWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

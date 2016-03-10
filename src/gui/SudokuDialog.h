@@ -4,14 +4,23 @@
 #include <QMainWindow>
 
 #include "ui_SudokuDialogUi.h"
+#include "Board.h"
 
 class SudokuDialog : public QMainWindow, public Ui_SudokuDialogUi
 {
-    Q_OBJECT;
+    Q_OBJECT
 
 public:
     SudokuDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    virtual ~SudokuDialog();
+
+private:
+    void newGame();
+    void reloadGame();
+
+private slots:
+    void slotNewClicked();
+    void slotResetClicked();
+    void slotExitClicked();
 };
 
 #endif /* SUDOKUDIALOG_H_ */

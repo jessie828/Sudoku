@@ -32,11 +32,13 @@ QMAKE_LFLAGS =
 
 SOURCES += \
         SudokuDialog.cpp \
+        SudokuTableWidget.cpp \
         Sudoku.cpp \
         #
 
 HEADERS += \
-        SudokuDialog.h
+        SudokuDialog.h \
+        SudokuTableWidget.h \
         #
 
 FORMS += \
