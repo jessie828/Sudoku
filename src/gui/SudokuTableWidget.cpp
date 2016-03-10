@@ -39,25 +39,25 @@ SudokuTableWidget::SudokuTableWidget(QWidget *parent)
     viewport()->update();
 }
 
-
-void SudokuTableWidget::setupBoard(const QMap<QPair<int, int>, int> &values)
+#include <stdlib.h>
+void SudokuTableWidget::setupBoard(bool newBoard)
 {
+    clear(newBoard);
     QFont bold;
     bold.setBold(true);
-    QMapIterator<QPair<int, int>, int> it(values);
-    while (it.hasNext())
+    if (newBoard)
     {
-        it.next();
-        QPair<int, int> loc(it.key());
-        int value = it.value();
+        m_ignoredItems.clear();
+        int value = rand() % 9 + 1;
         QTableWidgetItem *defaultItem = new QTableWidgetItem();
         defaultItem->setText(QString("%1").arg(value));
         defaultItem->setBackground(QColor("grey"));
         defaultItem->setFont(bold);
         defaultItem->setTextAlignment(Qt::AlignCenter);
         defaultItem->setFlags(Qt::ItemIsEnabled);
-        delete item(loc.first, loc.second);
-        setItem(loc.first, loc.second, defaultItem);
+        delete item(0,1);
+        setItem(0, 1, defaultItem);
+        m_ignoredItems.append(defaultItem);
     }
 }
 
@@ -87,4 +87,23 @@ void SudokuTableWidget::paintEvent(QPaintEvent *e)
     painter.drawLine(QLine(visualItemRect(item(0,2)).topRight(),visualItemRect(item(8,2)).bottomRight()));
     painter.drawLine(QLine(visualItemRect(item(0,5)).topRight(),visualItemRect(item(8,5)).bottomRight()));
     painter.end();
+}
+
+
+void SudokuTableWidget::clear(bool newBoard)
+{
+    for (int row = 0; row < rowCount(); row++)
+    {
+        for (int col = 0; col < columnCount(); col++)
+        {
+            QTableWidgetItem *it = item(row, col);
+            if (it != 0)
+            {
+                if (!m_ignoredItems.contains(it))
+                {
+                    it->setText("");
+                }
+            }
+        }
+    }
 }

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "ui_SudokuDialogUi.h"
+#include "Board.h"
 
 class SudokuDialog : public QMainWindow, public Ui_SudokuDialogUi
 {
@@ -14,6 +15,7 @@ public:
 
 private:
     void newGame();
+    void reloadGame();
 
 private slots:
     void slotNewClicked();

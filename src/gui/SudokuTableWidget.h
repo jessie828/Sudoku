@@ -10,16 +10,21 @@ class SudokuTableWidget : public QTableWidget
 
 public:
     SudokuTableWidget(QWidget *parent = 0);
-    void setupBoard(const QMap<QPair<int, int>, int> &);
+    void setupBoard(bool);
 
 signals:
     void test();
 
 private:
     void paintEvent(QPaintEvent *e);
+    void clear(bool);
 
 private slots:
         void slotValidateInput(QTableWidgetItem *);
+
+private:
+    Board m_board;
+    QList<QTableWidgetItem *> m_ignoredItems;
 };
 
 #endif /* SUDOKUTABLEWIDGET_H_ */
