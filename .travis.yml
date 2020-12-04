@@ -1,4 +1,6 @@
 language: cpp
 compiler: gcc
-env : OS_TYPE=centos OS_VERSION=6
-install: make
+os : linux
+#env : OS_TYPE=centos OS_VERSION=6
+script : make
+#install: make 
